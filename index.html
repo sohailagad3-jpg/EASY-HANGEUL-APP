@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Easy Hangeul App</title>
+    <style>
+        /* هذا الجزء هو التنسيق (CSS) لجعل الصفحة جميلة */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #0047a0; /* لون علم كوريا الأزرق */
+        }
+        h1 { color: #cd2e3a; } /* لون علم كوريا الأحمر */
+        button {
+            background-color: #0047a0;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { background-color: #cd2e3a; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Learn Korean with me!</h1>
+        <p>This is my project for the GKS scholarship.</p>
+        <button onclick="startLearning()">Enroll Now</button>
+    </div>
+
+    <script>
+        // هذا الجزء (JavaScript) لجعل الزر يعمل
+        function startLearning() {
+            alert("Welcome! Let's start learning Hangeul together! 🇰🇷");
+        }
+    </script>
+
+</body>
+</html>
