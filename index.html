@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق سهيلة لتعلم الهانغول - GKS 2028</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fdfdfd; text-align: center; padding: 20px; color: #333; }
+        .header-section { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border-top: 5px solid #d32f2f; }
+        h1 { color: #d32f2f; margin: 0; }
+        .subtitle { color: #555; margin-top: 10px; font-size: 1.1em; }
+        
+        .section-header { background: #3f51b5; color: white; padding: 12px; border-radius: 10px; margin: 25px auto; max-width: 650px; font-weight: bold; }
+        .vowels-header { background: #ff5722; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 15px; max-width: 800px; margin: 0 auto; }
+        
+        .card { 
+            background: white; padding: 20px; border-radius: 15px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08); cursor: pointer;
+            transition: all 0.3s ease; border: 1px solid #eee;
+        }
+        .card:hover { transform: translateY(-5px); border-color: #3f51b5; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .korean { font-size: 55px; color: #d32f2f; display: block; margin-bottom: 5px; font-weight: bold; }
+        .arabic { color: #2c3e50; font-size: 18px; display: block; }
+        .english { color: #95a5a6; font-size: 14px; }
+
+        footer { margin-top: 60px; padding: 30px; background: #2c3e50; color: white; border-radius: 15px 15px 0 0; }
+        .footer-name { font-size: 1.2em; font-weight: bold; color: #ffeb3b; }
+        .footer-goal { font-size: 0.9em; margin-top: 10px; opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+    <div class="header-section">
+        <h1>🇰🇷 تطبيق سهيلة لتعلم الحروف الكورية</h1>
+        <p class="subtitle">خطوة بخطوة نحو التميز في اللغة الكورية</p>
+    </div>
+
+    <!-- مجموعة الحروف المتحركة -->
+    <div class="section-header vowels-header">الحروف المتحركة (Vowels)</div>
+    <div class="grid">
+        <div class="card" onclick="speak('아')"><span class="korean">아</span><span class="arabic">أا</span><span class="english">A</span></div>
+        <div class="card" onclick="speak('야')"><span class="korean">야</span><span class="arabic">يا</span><span class="english">Ya</span></div>
+        <div class="card" onclick="speak('어')"><span class="korean">어</span><span class="arabic">أو</span><span class="english">Eo</span></div>
+        <div class="card" onclick="speak('여')"><span class="korean">여</span><span class="arabic">يو</span><span class="english">Yeo</span></div>
+        <div class="card" onclick="speak('오')"><span class="korean">오</span><span class="arabic">أو (O)</span><span class="english">O</span></div>
+        <div class="card" onclick="speak('요')"><span class="korean">요</span><span class="arabic">يو (Yo)</span><span class="english">Yo</span></div>
+        <div class="card" onclick="speak('우')"><span class="korean">우</span><span class="arabic">وو</span><span class="english">U</span></div>
+        <div class="card" onclick="speak('유')"><span class="korean">유</span><span class="arabic">يوو</span><span class="english">Yu</span></div>
+        <div class="card" onclick="speak('으')"><span class="korean">으</span><span class="arabic">إي (Eu)</span><span class="english">Eu</span></div>
+        <div class="card" onclick="speak('이')"><span class="korean">이</span><span class="arabic">إي (I)</span><span class="english">I</span></div>
+    </div>
+
+    <!-- مجموعة الحروف الساكنة -->
+    <div class="section-header">الحروف الساكنة (Consonants)</div>
+    <div class="grid">
+        <div class="card" onclick="speak('ㄱ')"><span class="korean">ㄱ</span><span class="arabic">ك / ج</span><span class="english">G / K</span></div>
+        <div class="card" onclick="speak('ㄴ')"><span class="korean">ㄴ</span><span class="arabic">ن</span><span class="english">N</span></div>
+        <div class="card" onclick="speak('ㄷ')"><span class="korean">ㄷ</span><span class="arabic">د / ت</span><span class="english">D / T</span></div>
+        <div class="card" onclick="speak('ㄹ')"><span class="korean">ㄹ</span><span class="arabic">ر / ل</span><span class="english">R / L</span></div>
+        <div class="card" onclick="speak('ㅁ')"><span class="korean">ㅁ</span><span class="arabic">م</span><span class="english">M</span></div>
+        <div class="card" onclick="speak('ㅂ')"><span class="korean">ㅂ</span><span class="arabic">ب</span><span class="english">B</span></div>
+        <div class="card" onclick="speak('ㅅ')"><span class="korean">ㅅ</span><span class="arabic">س</span><span class="english">S</span></div>
+        <div class="card" onclick="speak('ㅇ')"><span class="korean">ㅇ</span><span class="arabic">صامت / NG</span><span class="english">NG</span></div>
+        <div class="card" onclick="speak('ㅈ')"><span class="korean">ㅈ</span><span class="arabic">ج</span><span class="english">J</span></div>
+        <div class="card" onclick="speak('ㅎ')"><span class="korean">ㅎ</span><span class="arabic">هـ</span><span class="english">H</span></div>
+    </div>
+
+    <footer>
+        <div class="footer-name">المطورة: سهيلة (Souhaila)</div>
+        <div class="footer-goal">خريجة عام 2028 | طامحة لمنحة GKS 🎓</div>
+        <div class="footer-goal">هذا التطبيق جزء من رحلتي لتعلم ونشر الثقافة الكورية.</div>
+    </footer>
+
+    <script>
+        function speak(letter) {
+            window.speechSynthesis.cancel();
+            let msg = new SpeechSynthesisUtterance();
+            msg.text = letter;
+            msg.lang = 'ko-KR';
+            msg.rate = 0.7;
+            window.speechSynthesis.speak(msg);
+        }
+    </script>
+
+</body>
+</html>
