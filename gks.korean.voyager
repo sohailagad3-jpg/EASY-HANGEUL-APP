@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKS Project: K-Grammar Space Voyager</title>
+    <style>
+        body { margin: 0; background: #0b0b1e; font-family: 'Malgun Gothic', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; color: white; overflow: hidden; }
+        #info-panel { width: 600px; margin-bottom: 10px; text-align: center; font-size: 14px; color: #a0a0c0; }
+        #gameCanvas { background: radial-gradient(circle, #1a1a3a 0%, #050515 100%); border: 3px solid #00f0ff; border-radius: 10px; box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); cursor: crosshair; }
+        .highlight { color: #00f0ff; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div id="info-panel">
+    <h2>🚀 K-Grammar Space Voyager</h2>
+    <p>مشروع تفاعلي لتقييم مهارات اللغة الكورية | <span class="highlight">GKS Portfolio Candidate</span></p>
+    <p>اضغطي بالفأرة (Click) على الصاروخ الذي يحمل الأداة النحوية الصحيحة لإكمال الجملة المهارية الكورية!</p>
+</div>
+<canvas id="gameCanvas" width="600" height="450"></canvas>
+<script>
+    const canvas = document.getElementById('gameCanvas'); const ctx = canvas.getContext('2d');
+    const quizBank = [
+        { sentence: "한국어___ 재미있어요. (اللغة الكورية ممتعة)", options: ["가", "를"], correct: 0 },
+        { sentence: "저는 학생___ 아닙니다. (أنا لست طالباً)", options: ["이", "加"], correct: 0 },
+        { sentence: "오늘___ 날씨가 좋습니다. (اليوم الطقس جميل)", options: ["은", "는"], correct: 0 },
+        { sentence: "비빔밥___ 먹고 싶어요. (أريد أكل البيبيمباب)", options: ["을", "를"], correct: 0 }
+    ];
+    let currentQuestionIndex = 0, score = 0, gameState = "PLAYING", targets = [];
+    function initQuestion() {
+        if (currentQuestionIndex >= quizBank.length) { gameState = "WIN"; return; }
+        let q = quizBank[currentQuestionIndex];
+        targets = [{ x: 150, y: 300, w: 100, h: 50, text: q.options[0], id: 0 }, { x: 350, y: 300, w: 100, h: 50, text: q.options[1], id: 1 }];
+    }
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (gameState === "PLAYING") {
+            let q = quizBank[currentQuestionIndex];
+            ctx.fillStyle = "#fff"; ctx.font = "16px Arial"; ctx.fillText("Score: " + score, 20, 30);
+            ctx.fillStyle = "#ffff00"; ctx.font = "bold 24px 'Malgun Gothic'"; ctx.textAlign = "center"; ctx.fillText(q.sentence, canvas.width / 2, 130);
+            targets.forEach(t => {
+                ctx.fillStyle = "#00f0ff"; ctx.fillRect(t.x, t.y, t.w, t.h);
+                ctx.fillStyle = "#000"; ctx.font = "bold 20px Arial"; ctx.fillText(t.text, t.x + t.w/2, t.y + 32);
+            });
+        } else if (gameState === "WIN") {
+            ctx.fillStyle = "#00ffcc"; ctx.font = "bold 25px Arial"; ctx.textAlign = "center"; ctx.fillText("🎉 Excellent Corean Skills! 🎉", canvas.width/2, 200);
+        } else if (gameState === "OVER") {
+            ctx.fillStyle = "#ff4a5a"; ctx.font = "bold 25px Arial"; ctx.textAlign = "center"; ctx.fillText("Game Over", canvas.width/2, 200);
+        }
+        requestAnimationFrame(draw);
+    }
+    canvas.addEventListener('click', function(e) {
+        const rect = canvas.getBoundingClientRect(); const mouseX = e.clientX - rect.left; const mouseY = e.clientY - rect.top;
+        if (gameState === "PLAYING") {
+            targets.forEach(t => {
+                if (mouseX >= t.x && mouseX <= t.x + t.w && mouseY >= t.y && mouseY <= t.y + t.h) {
+                    if (t.id === quizBank[currentQuestionIndex].correct) { score += 10; currentQuestionIndex++; initQuestion(); } else { gameState = "OVER"; }
+                }
+            });
+        } else { currentQuestionIndex = 0; score = 0; gameState = "PLAYING"; initQuestion(); }
+    });
+    initQuestion(); draw();
+</script>
+</body>
+</html>
